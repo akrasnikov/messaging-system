@@ -1,4 +1,6 @@
-using Koshelek.Messaging.Domain.Entities;
+using Koshelek.Messaging.Application.Messages.Commands;
+using Koshelek.Messaging.Application.Messages.Queries;
+using Koshelek.Messaging.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -13,71 +15,37 @@ namespace Koshelek.Messaging.Web.Controllers
 
         public MessagesController(IMediator mediator) => _mediator = mediator;
 
-        [ProducesResponseType(typeof(Response<OrderModel>), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(Response<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(CreateMessageResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPost()]
-        public IActionResult CreateMessage([FromBody] CreateMessagesCommand commabd)
+        [HttpPost("message")]
+        public IActionResult CreateMessage([FromBody] CreateMessageCommand command)
         {
-
-            return Created();
+            var result = _mediator.Send(command);
+            return Ok(result);
         }
 
-        [ProducesResponseType(typeof(Ok<Message>), StatusCodes.Status201Created)]
+
+        //[ProducesResponseType(typeof(CreateResponse), StatusCodes.Status200OK)]
+        //[ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[HttpPost("message/test")]
+        //public IActionResult  Message([FromBody] CreateCommand<Message> command)
+        //{
+        //    var result = _mediator.Send(command);
+        //    return Ok(result);
+        //}
+
+
+        [ProducesResponseType(typeof(GetMessagesResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(Response<string>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("/range")]
         public IActionResult GetMessages([FromQuery] GetMessagesQuery query)
         {
-            TypedResults.Ok(query);
-
-
+            var result = _mediator.Send(query);
             return Ok();
         }
-
-    }
-
-    public class CreateMessagesCommandHandler : IRequestHandler<CreateMessagesCommand, uint>
-    {
-
-        public CreateMessagesCommandHandler()
-        {
-
-        }
-
-        public Task<uint> Handle(CreateMessagesCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class GetMessagesQueryCommandHandler : IRequestHandler<GetMessagesQuery, IReadOnlyList<Message>>
-    {
-
-        public GetMessagesQueryCommandHandler()
-        {
-
-        }
-
-        public Task<IReadOnlyList<Message>> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class CreateMessagesCommand : IRequest<uint>
-    {
-        public int Id { get; init; }
-        public string Text { get; init; } = string.Empty;
-    }
-
-    public class GetMessagesQuery : IRequest<IReadOnlyList<Message>>
-    {
-        public DateTime From { get; init; }
-        public DateTime To { get; init; }
-
-        public int PageNumber { get; init; }
-        public int PageSize { get; init; }
 
     }
 }

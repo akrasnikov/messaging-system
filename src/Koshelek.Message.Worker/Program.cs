@@ -1,4 +1,8 @@
 
+using Koshelek.Message.Worker.Events;
+using MassTransit;
+using System.Reflection;
+
 namespace Koshelek.Message.Worker
 {
     public class Program
@@ -9,8 +13,10 @@ namespace Koshelek.Message.Worker
 
             // Add services to the container.
 
+            builder.Services.AddEvents();
+
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
