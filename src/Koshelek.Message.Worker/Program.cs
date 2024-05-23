@@ -1,9 +1,8 @@
-
-using Koshelek.Message.Worker.Events;
+using Koshelek.Messaging.Worker.Events;
 using MassTransit;
 using System.Reflection;
 
-namespace Koshelek.Message.Worker
+namespace Koshelek.Messaging.Worker
 {
     public class Program
     {

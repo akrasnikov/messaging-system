@@ -30,7 +30,7 @@ namespace Koshelek.Messaging.Web.Controllers
         //[ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
         //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
         //[HttpPost("message/test")]
-        //public IActionResult  Message([FromBody] CreateCommand<Message> command)
+        //public IActionResult  Text([FromBody] CreateCommand<Text> command)
         //{
         //    var result = _mediator.Send(command);
         //    return Ok(result);

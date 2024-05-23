@@ -1,7 +1,7 @@
 ﻿using Koshelek.Messaging.Events.Contracts;
 using MassTransit;
 
-namespace Koshelek.Message.Worker.Events.Consumers
+namespace Koshelek.Messaging.Worker.Events.Consumers
 {
     public class GetMessagesConsumer : IConsumer<GetMessagesIntegrationEvent>
     {

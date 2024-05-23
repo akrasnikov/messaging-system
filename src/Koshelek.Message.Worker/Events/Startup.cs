@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Koshelek.Message.Worker.Events;
+namespace Koshelek.Messaging.Worker.Events;
 
 internal static class Startup
 {

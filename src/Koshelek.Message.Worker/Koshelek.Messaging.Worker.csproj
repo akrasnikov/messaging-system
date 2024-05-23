@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Koshelek.Messaging.Domain\Koshelek.Messaging.Domain.csproj" />
     <ProjectReference Include="..\Koshelek.Messaging.Event\Koshelek.Messaging.Events.csproj" />
   </ItemGroup>
 
