@@ -1,6 +1,6 @@
 ﻿using Koshelek.Messaging.Domain.Common.Interfaces;
 
-namespace Koshelek.Messaging.Domain
+namespace Koshelek.Messaging.Domain.Interfaces.Notifications
 {
     public interface INotificationService : ITransientService
     {

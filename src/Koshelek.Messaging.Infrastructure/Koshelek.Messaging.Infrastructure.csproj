@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Koshelek.Messaging.Domain\Koshelek.Messaging.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

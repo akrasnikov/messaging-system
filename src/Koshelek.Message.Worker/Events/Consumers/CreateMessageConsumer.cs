@@ -1,7 +1,8 @@
-﻿using Koshelek.Messaging.Domain;
-using Koshelek.Messaging.Domain.Entities;
+﻿using Koshelek.Messaging.Domain.Entities;
+using Koshelek.Messaging.Domain.Interfaces.Notifications;
 using Koshelek.Messaging.Domain.Interfaces.Repositories;
 using Koshelek.Messaging.Events.Contracts;
+using Koshelek.Messaging.Worker.Notifications;
 using MassTransit;
 
 namespace Koshelek.Messaging.Worker.Events.Consumers
@@ -31,7 +32,7 @@ namespace Koshelek.Messaging.Worker.Events.Consumers
                 CreateAt = context.Message.CreateAt
             };
 
-            await _messagesRepository.CreateAsync(message, context.CancellationToken);
+            await _messagesRepository.CreateAsync(message, context.CancellationToken); 
 
             await _notificationService.BroadcastAsync(new BasicNotification()
             {

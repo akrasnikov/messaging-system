@@ -1,4 +1,6 @@
-﻿namespace Koshelek.Messaging.Domain;
+﻿using Koshelek.Messaging.Domain.Interfaces.Notifications;
+
+namespace Koshelek.Messaging.Worker.Notifications;
 
 public class BasicNotification : INotificationMessage
 {
@@ -10,7 +12,7 @@ public class BasicNotification : INotificationMessage
         Error
     }
 
-    
+
     public LabelType Label { get; set; }
     public uint Id { get; set; }
     public string? Text { get; set; }
