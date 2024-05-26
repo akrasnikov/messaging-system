@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koshelek.Messaging.Worker", "Koshelek.Message.Worker\Koshelek.Messaging.Worker.csproj", "{560C4B32-5099-4F8D-ABE3-293FD7E06D72}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koshelek.Messaging.Web", "Koshelek.Messaging.Web\Koshelek.Messaging.Web.csproj", "{3ADE0150-A72B-4D4D-93D3-7173A212160B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koshelek.Messaging.Domain", "Koshelek.Messaging.Domain\Koshelek.Messaging.Domain.csproj", "{7A78B72D-96A5-4E9A-8AE8-35676EE5CAD6}"
@@ -15,16 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koshelek.Messaging.Events",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koshelek.Messaging.Application", "Koshelek.Messaging.Application\Koshelek.Messaging.Application.csproj", "{A63E5FE0-C79E-4407-B4A4-43C784AFD290}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Koshelek.Messaging.Worker", "Koshelek.Messaging.Worker\Koshelek.Messaging.Worker.csproj", "{8622A4FC-82CD-4C0B-B183-7F525CA898DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{560C4B32-5099-4F8D-ABE3-293FD7E06D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{560C4B32-5099-4F8D-ABE3-293FD7E06D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{560C4B32-5099-4F8D-ABE3-293FD7E06D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{560C4B32-5099-4F8D-ABE3-293FD7E06D72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3ADE0150-A72B-4D4D-93D3-7173A212160B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3ADE0150-A72B-4D4D-93D3-7173A212160B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ADE0150-A72B-4D4D-93D3-7173A212160B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{A63E5FE0-C79E-4407-B4A4-43C784AFD290}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A63E5FE0-C79E-4407-B4A4-43C784AFD290}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A63E5FE0-C79E-4407-B4A4-43C784AFD290}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8622A4FC-82CD-4C0B-B183-7F525CA898DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8622A4FC-82CD-4C0B-B183-7F525CA898DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8622A4FC-82CD-4C0B-B183-7F525CA898DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8622A4FC-82CD-4C0B-B183-7F525CA898DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
