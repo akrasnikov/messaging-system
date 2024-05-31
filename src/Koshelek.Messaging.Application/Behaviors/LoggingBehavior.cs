@@ -4,14 +4,14 @@ using System.Text.Json;
 
 namespace Koshelek.Messaging.Application.Behaviors
 {
-    public class RequestResponseLoggingBehavior<TRequest, TResponse> :
+    public class LoggingBehavior<TRequest, TResponse> :
         IPipelineBehavior<TRequest, TResponse>
         where TRequest : class
         where TResponse : class
     {
-        private readonly ILogger<RequestResponseLoggingBehavior<TRequest, TResponse>> _logger;
+        private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
 
-        public RequestResponseLoggingBehavior(ILogger<RequestResponseLoggingBehavior<TRequest, TResponse>> logger)
+        public LoggingBehavior(ILogger<LoggingBehavior<TRequest, TResponse>> logger)
         {
             _logger = logger;
         }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Koshelek.Messaging.Domain.Common.Interfaces;
+using MediatR;
 
 namespace Koshelek.Messaging.Application.Messages.Commands
 {
