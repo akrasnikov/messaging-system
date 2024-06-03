@@ -2,7 +2,7 @@
 using Koshelek.Messaging.Domain.Interfaces.Repositories;
 using System.Linq.Expressions;
 
-namespace Koshelek.Messaging.Infrastructure.Repositories
+namespace Koshelek.Messaging.Infrastructure.Persistence.Repositories
 {
     public class MessagesRepository : IMessagesRepository
     {
