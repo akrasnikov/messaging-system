@@ -1,29 +1,8 @@
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using OpenIDConnect.Infrastructure.Auth;
-using OpenIDConnect.Infrastructure.BackgroundJobs;
-using OpenIDConnect.Infrastructure.Caching;
-using OpenIDConnect.Infrastructure.Common;
-using OpenIDConnect.Infrastructure.Cors;
-using OpenIDConnect.Infrastructure.FileStorage;
-using OpenIDConnect.Infrastructure.Localization;
-using OpenIDConnect.Infrastructure.Mailing;
-using OpenIDConnect.Infrastructure.Mapping;
-using OpenIDConnect.Infrastructure.Middleware;
-using OpenIDConnect.Infrastructure.Multitenancy;
-using OpenIDConnect.Infrastructure.Notifications;
-using OpenIDConnect.Infrastructure.OpenApi;
-using OpenIDConnect.Infrastructure.Persistence;
-using OpenIDConnect.Infrastructure.Persistence.Initialization;
-using OpenIDConnect.Infrastructure.SecurityHeaders;
-using OpenIDConnect.Infrastructure.Validations;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
+using Koshelek.Messaging.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Koshelek.Messaging.Infrastructure.Persistence;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Infrastructure.Test")]
 

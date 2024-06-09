@@ -15,7 +15,7 @@ namespace Koshelek.Messaging.Application.Messages.Queries
         public async Task<IReadOnlyList<Message>> Handle(GetMessagesQuery request, CancellationToken cancellationToken)
         { 
             return await _messagesRepository.FindAsync(
-                message => message.CreateAt > request.From && message.CreateAt < request.To, 
+                message => message.CreatedAt > request.From && message.CreatedAt < request.To, 
                 request.PageNumber,
                 request.PageSize,
                 cancellationToken);

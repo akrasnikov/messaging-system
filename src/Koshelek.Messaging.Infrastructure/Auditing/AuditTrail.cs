@@ -1,3 +1,4 @@
+using Koshelek.Messaging.Domain.Common.Interfaces;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Koshelek.Messaging.Infrastructure.Auditing;
@@ -12,8 +13,7 @@ public class AuditTrail
         _serializer = serializer;
     }
 
-    public EntityEntry Entry { get; }
-    public Guid UserId { get; set; }
+    public EntityEntry Entry { get; } 
     public string? TableName { get; set; }
     public Dictionary<string, object?> KeyValues { get; } = new();
     public Dictionary<string, object?> OldValues { get; } = new();
@@ -25,8 +25,7 @@ public class AuditTrail
 
     public Trail ToAuditTrail() =>
         new()
-        {
-            UserId = UserId,
+        {  
             Type = TrailType.ToString(),
             TableName = TableName,
             DateTime = DateTime.UtcNow,

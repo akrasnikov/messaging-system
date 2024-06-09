@@ -29,7 +29,7 @@ namespace Koshelek.Messaging.Worker.Events.Consumers
             {
                 Id = context.Message.Id,
                 Text = context.Message.Text,
-                CreateAt = context.Message.CreateAt
+                CreatedAt = context.Message.CreateAt
             };
 
             await _messagesRepository.CreateAsync(message, context.CancellationToken); 

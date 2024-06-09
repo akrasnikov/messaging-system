@@ -8,7 +8,8 @@ namespace Koshelek.Messaging.Domain.Entities
         public uint Id { get; init; }
         public string Text { get; init; }
         public bool IsDeleted { get; set; }
-        public DateTime CreateAt { get; init; }
-        public DateTime UpdateAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 }

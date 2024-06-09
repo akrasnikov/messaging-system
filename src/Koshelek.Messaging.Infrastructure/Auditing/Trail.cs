@@ -1,10 +1,8 @@
-using OpenIDConnect.Domain.Common.Contracts;
-
 namespace Koshelek.Messaging.Infrastructure.Auditing;
 
-public class Trail : BaseEntity
+public class Trail 
 {
-    public Guid UserId { get; set; }
+    public Guid Id { get; set; }
     public string? Type { get; set; }
     public string? TableName { get; set; }
     public DateTime DateTime { get; set; }
