@@ -2,7 +2,7 @@ using Koshelek.Messaging.Domain.Common.Interfaces;
 using System.Text.Json;
 
 
-namespace Koshelek.Messaging.Domain.Common.Services;
+namespace Koshelek.Messaging.Infrastructure.Common.Services;
 
 public class MicrosoftSerializerService : ISerializerService
 {
