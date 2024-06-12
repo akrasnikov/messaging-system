@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
-namespace Koshelek.Messaging.Application.Behaviors
+namespace Koshelek.Messaging.Infrastructure.Behaviors
 {
     public class LoggingBehavior<TRequest, TResponse> :
         IPipelineBehavior<TRequest, TResponse>

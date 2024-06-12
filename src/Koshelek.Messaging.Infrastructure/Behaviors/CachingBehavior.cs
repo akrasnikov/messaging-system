@@ -1,13 +1,13 @@
 ﻿using Koshelek.Messaging.Application.Options;
 using Koshelek.Messaging.Domain.Common.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
+using MediatR;
 
-namespace Koshelek.Messaging.Application.Behaviors
+namespace Koshelek.Messaging.Infrastructure.Behaviors
 {
     public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
     {
@@ -52,7 +52,7 @@ namespace Koshelek.Messaging.Application.Behaviors
         }
 
         private string GenerateKey(TRequest request)
-        { 
+        {
             return $"{request.GetType().Name}:{JsonSerializer.Serialize(request)}";
         }
 

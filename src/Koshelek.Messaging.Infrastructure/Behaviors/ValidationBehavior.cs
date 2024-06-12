@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace Koshelek.Messaging.Application.Behaviors
+namespace Koshelek.Messaging.Infrastructure.Behaviors
 {
     public class ValidationBehavior<TRequest, TResponse> :
         IPipelineBehavior<TRequest, TResponse>
@@ -35,7 +35,7 @@ namespace Koshelek.Messaging.Application.Behaviors
                 if (failures.Count > 0)
                     throw new ValidationException(failures);
             }
-            var response =  await next().ConfigureAwait(false);
+            var response = await next().ConfigureAwait(false);
 
             return response;
         }
