@@ -1,4 +1,6 @@
+using Koshelek.Messaging.Infrastructure.Behaviors;
 using Koshelek.Messaging.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -12,21 +14,21 @@ public static class Startup
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var applicationAssembly = typeof(OpenIDConnect.Application.Startup).GetTypeInfo().Assembly;
-        MapsterSettings.Configure();
+        var applicationAssembly = typeof(Application.Startup).GetTypeInfo().Assembly;
+         
         return services
             .AddApiVersioning()
-            .AddAuth(config)
-            .AddBackgroundJobs(config)
             .AddCaching(config)
+            .AddBehaviours()
+            .AddMediatR(Assembly.GetExecutingAssembly())
+            .AddBackgroundJobs(config)
+            
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
-            .AddBehaviours(applicationAssembly)
-            .AddHealthCheck()
-            .AddPOLocalization(config)
-            .AddMailing(config)
-            .AddMediatR(Assembly.GetExecutingAssembly())
-            .AddMultitenancy()
+             
+             
+            
+             
             .AddNotifications(config)
             .AddOpenApiDocumentation(config)
             .AddPersistence()
@@ -43,17 +45,9 @@ public static class Startup
             config.ReportApiVersions = true;
         });
 
-    private static IServiceCollection AddHealthCheck(this IServiceCollection services) =>
-        services.AddHealthChecks().AddCheck<TenantHealthCheck>("Tenant").Services;
+    
 
-    public static async Task InitializeDatabasesAsync(this IServiceProvider services, CancellationToken cancellationToken = default)
-    {
-        // Create a new scope to retrieve scoped services
-        using var scope = services.CreateScope();
-
-        await scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>()
-            .InitializeDatabasesAsync(cancellationToken);
-    }
+     
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
         builder
