@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Koshelek.Messaging.Application.Behaviors;
+namespace Koshelek.Messaging.Infrastructure.Behaviors;
 
 public static class Startup
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static IServiceCollection AddBehaviours(this IServiceCollection services)
     {
 
         services.AddMediatR(cfg =>
