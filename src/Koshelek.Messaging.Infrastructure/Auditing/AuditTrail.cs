@@ -23,7 +23,7 @@ public class AuditTrail
     public List<string> ChangedColumns { get; } = new();
     public bool HasTemporaryProperties => TemporaryProperties.Count > 0;
 
-    public Trail ToAuditTrail() =>
+    public Trail Clone() =>
         new()
         {  
             Type = TrailType.ToString(),

@@ -157,7 +157,7 @@ public abstract class BaseDbContext : DbContext
 
         foreach (var auditEntry in trailEntries.Where(e => !e.HasTemporaryProperties))
         {
-            AuditTrails.Add(auditEntry.ToAuditTrail());
+            AuditTrails.Add(auditEntry.Clone());
         }
 
         return trailEntries.Where(e => e.HasTemporaryProperties).ToList();
@@ -169,7 +169,7 @@ public abstract class BaseDbContext : DbContext
         {
             return Task.CompletedTask;
         }
-
+       
         foreach (var entry in trailEntries)
         {
             foreach (var prop in entry.TemporaryProperties)
@@ -184,7 +184,7 @@ public abstract class BaseDbContext : DbContext
                 }
             }
 
-            AuditTrails.Add(entry.ToAuditTrail());
+            AuditTrails.Add(entry.Clone());
         }
 
         return SaveChangesAsync(cancellationToken);
