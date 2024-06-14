@@ -1,5 +1,5 @@
+using Koshelek.Messaging.Infrastructure;
 using Koshelek.Messaging.Infrastructure.Behaviors;
-using Koshelek.Messaging.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,27 +8,28 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Infrastructure.Test")]
 
-namespace Koshelek.Messaging.Infrastructure.Persistence;
+namespace Koshelek.Messaging.Infrastructure;
 
 public static class Startup
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
         var applicationAssembly = typeof(Application.Startup).GetTypeInfo().Assembly;
-         
+
         return services
             .AddApiVersioning()
-            .AddCaching(config)
             .AddBehaviours()
+            .AddCaching(config)
+
             .AddMediatR(Assembly.GetExecutingAssembly())
             .AddBackgroundJobs(config)
-            
+
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
-             
-             
-            
-             
+
+
+
+
             .AddNotifications(config)
             .AddOpenApiDocumentation(config)
             .AddPersistence()
@@ -45,9 +46,9 @@ public static class Startup
             config.ReportApiVersions = true;
         });
 
-    
 
-     
+
+
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
         builder
