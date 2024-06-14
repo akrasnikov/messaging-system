@@ -7,9 +7,8 @@ namespace Koshelek.Messaging.Application.Messages.Commands
         public CreateMessageCommandValidator()
         {
             RuleFor(command => command.Id)
-            .NotNull()
-            .LessThan(1)             
-            .WithMessage("The number can't be null or be less than 0."); 
+            .NotNull()                      
+            .WithMessage("The number can't be null."); 
 
             RuleFor(command => command.Text)
                 .NotNull()
