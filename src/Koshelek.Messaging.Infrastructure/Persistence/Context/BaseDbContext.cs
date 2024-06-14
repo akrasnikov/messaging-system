@@ -12,14 +12,14 @@ public abstract class BaseDbContext : DbContext
 {
 
     private readonly ISerializerService _serializer;
-    private readonly DatabaseSettings _dbSettings;
+    private readonly DatabaseSettings _settings;
 
 
-    protected BaseDbContext(DbContextOptions options, ISerializerService serializer, IOptions<DatabaseSettings> dbSettings)
+    protected BaseDbContext(DbContextOptions options, ISerializerService serializer, IOptions<DatabaseSettings> settings)
         : base(options)
     {
         _serializer = serializer;
-        _dbSettings = dbSettings.Value;
+        _settings = settings.Value;
     }
 
     // Used by Dapper
@@ -50,9 +50,9 @@ public abstract class BaseDbContext : DbContext
         // Or uncomment the next line if you want to see them in the console
         // optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 
-        if (!string.IsNullOrWhiteSpace(_dbSettings.ConnectionString))
+        if (!string.IsNullOrWhiteSpace(_settings.ConnectionString))
         {
-            optionsBuilder.UseNpgsql(_dbSettings.ConnectionString, e =>
+            optionsBuilder.UseNpgsql(_settings.ConnectionString, e =>
                                  e.MigrationsAssembly("Migrators.PostgreSQL"));
         }
     }
@@ -72,33 +72,36 @@ public abstract class BaseDbContext : DbContext
     {
         foreach (var entry in ChangeTracker.Entries<IAuditable>().ToList())
         {
-            switch (entry.State)
+            switch (entry)
             {
-                case EntityState.Added:
+                case { State: EntityState.Added }:
                     entry.Entity.CreatedAt = DateTime.UtcNow;
                     break;
 
-                case EntityState.Modified:
+                case { State: EntityState.Modified }:
                     entry.Entity.UpdatedAt = DateTime.UtcNow;
                     break;
 
-                case EntityState.Deleted:
+                case { State: EntityState.Deleted }:
                     if (entry.Entity is ISoftDelete softDelete)
                     {
                         softDelete.DeletedAt = DateTime.UtcNow;
                         entry.State = EntityState.Modified;
                     }
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
         ChangeTracker.DetectChanges();
 
         var trailEntries = new List<AuditTrail>();
+        trailEntries.Capacity = 0;
 
         foreach (var entry in ChangeTracker.Entries<IAuditable>()
-            .Where(e => e.State is EntityState.Added or EntityState.Deleted or EntityState.Modified)
-            .ToList())
+                     .Where(e => e.State is EntityState.Added or EntityState.Deleted or EntityState.Modified)
+                     .ToList())
         {
             var trailEntry = new AuditTrail(entry, _serializer)
             {
